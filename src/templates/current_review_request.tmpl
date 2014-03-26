@@ -1,0 +1,265 @@
+{% extends "layout.tmpl" %}
+{% block header %}
+	<link rel="stylesheet" href="static/css/style.css?v=2">
+	
+	<!-- fluid 960 -->
+	<link rel="stylesheet" type="text/css" href="static/css/text.css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="static/css/layout.css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="static/css/grid.css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="static/css/diff.css" media="screen" />
+	<!-- superfish menu -->
+	<link rel="stylesheet" type="text/css" href="static/css/superfish.css" media="screen" />
+	<!-- tags css -->
+	<link rel="stylesheet" href="static/css/jquery.tagsinput.css">
+
+	<!-- dataTable css -->
+	<link rel="stylesheet" href="static/css/demo_table_jui.css">
+
+
+
+	<!-- //jqueryUI css -->
+	<link type="text/css" href="static/css/jquery-ui-1.8.13.custom.css" rel="stylesheet" />
+	
+	<!-- //jquery -->
+	<!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script> -->
+	<script src="static/js/jquery-1.5.1.min.js"></script>
+	<script>!window.jQuery && document.write(unescape('%3Cscript src="static/js/jquery-1.5.1.min.js"%3E%3C/script%3E'))</script>
+	<!-- //jqueryUI -->
+	<script type="text/javascript" src="static/js/jquery-ui-1.8.13.custom.min.js"></script>
+	<script type="text/javascript" src="static/js/jquery-fluid16.js"></script>
+	<script type="text/javascript" src="static/js/jquery-validate-min.js"></script>
+	
+	<!-- //xoxco tags plugin https://github.com/xoxco/jQuery-Tags-Input -->
+	<script src="static/js/jquery.tagsinput.min.js"></script>
+	<link rel="stylesheet" href="static/css/jquery.tagsinput.css">
+	
+	<!--[if lt IE 7 ]>
+	<script src="js/libs/dd_belatedpng.js"></script>
+	<script> DD_belatedPNG.fix('img, .png_bg');</script>
+	<![endif]-->
+	<!-- modernizr -->
+	<script src="static/js/modernizr-1.7.min.js"></script>
+	
+	<!-- superfish menu and needed js for menu -->
+	<script src="static/js/superfish.js"></script>
+	<script src="static/js/supersubs.js"></script>
+	<script src="static/js/hoverIntent.js"></script>
+
+	<!-- treeview -->
+	<script src="static/js/jquery.treeview.js"></script>
+	
+	<!-- dataTable -->
+	<script src="static/js/jquery.dataTables.min.js"></script>
+
+
+	<script src="static/js/base.js"></script>
+
+	
+	<!-- jqplot go here -->
+    <link class="include" rel="stylesheet" type="text/css" href="static/css/jquery.jqplot.min.css" />
+	<script class="include" type="text/javascript" src="static/js/jquery.jqplot.min.js"></script>
+	<script class="include" type="text/javascript" src="static/js/jqplot.barRenderer.min.js"></script>
+	<script class="include" type="text/javascript" src="static/js/jqplot.categoryAxisRenderer.min.js"></script>
+	<script class="include" type="text/javascript" src="static/js/jqplot.pointLabels.min.js"></script>
+	
+	<!-- End jqplot -->
+
+{% endblock %}
+
+{% block main %}
+
+		<div class="grid_16">
+
+			<form id="form_action" name="form_action" action="{{ url.ignore.relative }}" method="post">
+				<fieldset>
+					<div class="grid_12">
+						<h2 id="page-heading">
+							Commit ID: <label name="commit_id" id="commit_id">{{ commit_id }}</>
+						</h2>
+					</div>
+					<div class="grid_4">
+						<br><br>
+						<a href="{{ url.ignore.absolute }}" id="ignore" class="ui-state-default ui-corner-some floatRightMargin"><span class="ui-icon ui-icon-disk"></span>Ignore</a>
+						<a href="javascript:;" onclick="submitFunction('{{ url.revoke.relative }}')" id="revoke" class="ui-state-default ui-corner-some floatRightMargin"><span class="ui-icon ui-icon-disk"></span>Revoke</a>
+						<div id="dialog_ignore" title="Warning">
+							<p>
+								Ignoring failures may damage the build. Be cautious!
+							</p>
+						</div>
+					</div>
+					<div class="clear"></div>
+					<br>
+
+					<div class="grid 16">
+						<div class="grid_4">					
+							<fieldset>
+								<legend><strong>Overview</strong></legend>
+								<table>
+								<tr>
+									<td><strong>Product: </strong>
+</td>
+									<td><span> {{ info.product }} </span>
+	</td>
+								</tr>
+								<tr>
+									<td><strong>Version: </strong></td>
+									<td><span> {{ info.version }} </span></td>
+								</tr>
+								<tr>
+									<td><strong>Platform: </strong></td>
+									<td><span> {{ info.platform }} </span></td>
+								</tr>
+								<tr>
+									<td><strong>Files commited: </strong></td>
+									<td><span> {{ info.files_committed }} </span></td>
+								</tr>
+								<tr>
+									<td><strong>Testsuite executed: </strong></td>
+									<td><span> {{ info.tests_executed }} </span></td>
+								</tr>							
+								<tr id="toggle" >
+									<td><strong><U>Failures:</U></strong>
+										<div id="toggle_div" style="POSITION:float;width:80px;overflow:visiable;display: none;">
+										    {% for job in jobs %}
+												{% for failed_job in job.failed_jobs %} 
+										    		<a href="{{ failed_job.url }}"> {{ failed_job.name }}</><br>
+						   						{% endfor %}
+						   					{% endfor %}
+							  			</div>
+									</td>
+									<td>
+									<span style="color: red"> {{ info.failures }} </span>
+									</td>
+								</tr>							
+								</table>
+							</fieldset>				
+						</div>
+
+	
+
+						<div class="grid_12">
+							<div class="module_content">
+									<fieldset > 
+										<label>Category</label>
+										<select id="category" class="required" style="width:92%;" name="category">
+											<option value="">Please choose an option</option>
+											{% for category in categories %}
+											<option value="{{category}}">{{ category }}</option>
+											{% endfor %}
+										</select>
+									</fieldset>
+									<fieldset>
+										<label>Comment</label>
+										<textarea rows="6" id="comment" resize="vertical" name="comment" size="255"  minlength="2" required></textarea>
+									</fieldset>
+							</div>
+						</div>
+					</div>
+				</fieldset>
+			</form>
+		</div>
+		<br/>
+		
+		<div class="grid_16">
+				<div class="box">
+					<h2>
+						<a href="#" id="toggle-articles">Test result</a>
+					</h2>
+					{% for job in jobs %}
+					<div class="block" id="articles">
+						<div class="article">
+							  <div class="sixteen_column section">
+							    <div class="sixteen column">
+							      <div class="column_content">
+									<h3>
+										<a href="{{ job.jobpage }}">{{ job.name }}</a>
+									</h3>
+									<p class="meta">
+										<a href="{{ job.overview }}">Overview</a><span>  |  </span> 
+										<a href="{{ job.workspace }}">Workspace</a><span>  |  </span> 
+										<a href="{{ job.console }}">Console</a>
+										<!-- 
+										<span>  |  </span>
+										<a href="{{ job.testresult }}">Test result</a> | </span>
+										<a href="{{ job.logs }}">Logs</a>
+										-->
+									</p>
+							  	  </div>
+							  	</div>
+							  </div>
+							  <div >
+							    <div class="grid_16">
+							    	<div class="box">
+								  <div class="block">
+
+										<strong>Details</strong><br/>
+										<table cellpadding="0" cellspacing="0" border="0" width="800px" class="display" id="example">
+										<thead>
+											<tr>
+												<th>Test suite</th>
+												<th>Test case</th>
+												<th>Action</th>
+												<th>Result</th>
+												<th>Execution time</th>
+											</tr>
+										</thead>
+										<tfoot>
+											<tr>
+												<th>Test suite</th>
+												<th>Test case</th>
+												<th>Action</th>
+												<th>Result</th>
+												<th>Execution time</th>
+											</tr>
+										</tfoot>
+										<tbody>
+											{% for result in job.results %}
+											<tr class="gradeC">
+												{% for row in result %}
+													{% if row == "Failure" %}
+													<td style="color: red">{{ row }}</td>
+													{% else %}
+													<td>{{ row }}</td>
+													{% endif %}	
+												{% endfor %}
+											</tr>
+											{% endfor %}											
+										</tbody>
+									</table>
+							      </div>
+							      </div>
+								</div>
+							  </div>
+							<div class="clear"></div>
+						</div>
+					</div>
+					{% endfor %}
+				</div>
+			</div>
+		<br/>	
+
+		<div class="grid_16">
+				<div class="box">
+					<h2>
+						<a href="#" id="toggle-codediff">Code diff</a>
+					</h2>
+					<div class="block" id="codediff">
+						<div class="code">
+							<div id="tabs">
+								<ul>
+									{% for code in codes %}
+									<li><a href="#tabs-{{ code.index }}"> {{ code.filename }}</a></li>
+									{% endfor %}
+								</ul>
+								{% for code in codes %}
+								<div id="tabs-{{ code.index }}">
+									{{ code.filecontent }}
+								</div>
+								{% endfor %}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+{% endblock %}

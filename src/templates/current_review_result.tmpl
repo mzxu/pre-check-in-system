@@ -1,0 +1,89 @@
+{% extends "layout.tmpl" %}
+{% block header %}
+	<link rel="stylesheet" href="static/css/style.css?v=2">
+	
+	<!-- fluid 960 -->
+	<link rel="stylesheet" type="text/css" href="static/css/text.css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="static/css/layout.css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="static/css/grid.css" media="screen" />
+	<!-- superfish menu -->
+	<link rel="stylesheet" type="text/css" href="static/css/superfish.css" media="screen" />
+	<!-- tags css -->
+	<link rel="stylesheet" href="static/css/jquery.tagsinput.css">
+
+	<!-- dataTable css -->
+	<link rel="stylesheet" href="static/css/demo_table_jui.css">
+
+
+
+	<!-- //jqueryUI css -->
+	<link type="text/css" href="static/css/jquery-ui-1.8.13.custom.css" rel="stylesheet" />
+	
+	<!-- //jquery -->
+	<!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script> -->
+	<script src="static/js/jquery-1.5.1.min.js"></script>
+	<script>!window.jQuery && document.write(unescape('%3Cscript src="static/js/jquery-1.5.1.min.js"%3E%3C/script%3E'))</script>
+	<!-- //jqueryUI -->
+	<script type="text/javascript" src="static/js/jquery-ui-1.8.13.custom.min.js"></script>
+	<script type="text/javascript" src="static/js/jquery-fluid16.js"></script>
+	
+	<!-- //xoxco tags plugin https://github.com/xoxco/jQuery-Tags-Input -->
+	<script src="static/js/jquery.tagsinput.min.js"></script>
+	<link rel="stylesheet" href="static/css/jquery.tagsinput.css">
+	
+	<!--[if lt IE 7 ]>
+	<script src="js/libs/dd_belatedpng.js"></script>
+	<script> DD_belatedPNG.fix('img, .png_bg');</script>
+	<![endif]-->
+	<!-- modernizr -->
+	<script src="static/js/modernizr-1.7.min.js"></script>
+	
+	<!-- superfish menu and needed js for menu -->
+	<script src="static/js/superfish.js"></script>
+	<script src="static/js/supersubs.js"></script>
+	<script src="static/js/hoverIntent.js"></script>
+
+	<!-- treeview -->
+	<script src="static/js/jquery.treeview.js"></script>
+	
+	<!-- dataTable -->
+	<script src="static/js/jquery.dataTables.min.js"></script>
+
+
+	<script src="static/js/base.js"></script>
+
+
+{% endblock %}
+
+
+{% block main %}
+
+		<div class="grid_16">
+			<fieldset>
+				<div class="grid_16">
+					<h2 id="page-heading">
+						Commit ID: {{ commit_id }}
+					</h2>
+				</div>
+				<div class="clear"></div>
+				<br>				
+				<div class="grid_16">
+					<div class="module_content">
+							<fieldset> 
+								<label>Category:</label>
+								<label style="width:92%;" name="result_category"> {{ result.category }} </label>
+							</fieldset>
+							<fieldset>
+								<label>Comment:</label>
+								<label style="width:92%;" name="result_comment"> {{ result.comment }}</label>
+							</fieldset>
+							<fieldset>
+								<label>Your choice:<label>
+								<label> {{ result.choice }} </label>							
+							</fieldset>
+					</div>
+				</div>
+			</fieldset>
+		</div>
+
+{% endblock %}

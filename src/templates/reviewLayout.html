@@ -1,0 +1,484 @@
+<!-- 
+ * html5 admin
+ *
+ * is double licensed under the MIT and Creative Commons Attribution 3.0 Unported License.
+ * - https://github.com/jquery/jquery/blob/master/MIT-LICENSE.txt
+ * 
+ * - http://creativecommons.org/licenses/by/3.0/
+-->
+
+<!doctype html>
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">	
+	<title>Html5 Admin Template for Backend - Fake Dashboard</title>
+	<meta name="description" content="">
+	<meta name="author" content="">	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<link rel="stylesheet" href="css/style.css?v=2">
+	
+	<!-- fluid 960 -->
+	<link rel="stylesheet" type="text/css" href="css/text.css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="css/layout.css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="css/grid.css" media="screen" />
+	<!-- superfish menu -->
+	<link rel="stylesheet" type="text/css" href="css/superfish.css" media="screen" />
+	<!-- tags css -->
+	<link rel="stylesheet" href="css/jquery.tagsinput.css">
+
+	<!-- dataTable css -->
+	<link rel="stylesheet" href="css/demo_table_jui.css">
+
+
+
+	<!-- //jqueryUI css -->
+	<link type="text/css" href="css/custom-theme/jquery-ui-1.8.13.custom.css" rel="stylesheet" />
+	
+	<!-- //jquery -->
+	<!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script> -->
+	<script src="js/libs/jquery-1.5.1.min.js"></script>
+	<script>!window.jQuery && document.write(unescape('%3Cscript src="js/libs/jquery-1.5.1.min.js"%3E%3C/script%3E'))</script>
+	<!-- //jqueryUI -->
+	<script type="text/javascript" src="js/jquery-ui-1.8.13.custom.min.js"></script>
+	<script type="text/javascript" src="js/jquery-fluid16.js"></script>
+	
+	<!-- //xoxco tags plugin https://github.com/xoxco/jQuery-Tags-Input -->
+	<script src="js/jquery.tagsinput.min.js"></script>
+	<link rel="stylesheet" href="css/jquery.tagsinput.css">
+	
+	<!--[if lt IE 7 ]>
+	<script src="js/libs/dd_belatedpng.js"></script>
+	<script> DD_belatedPNG.fix('img, .png_bg');</script>
+	<![endif]-->
+	<!-- modernizr -->
+	<script src="js/libs/modernizr-1.7.min.js"></script>
+	
+	<!-- superfish menu and needed js for menu -->
+	<script src="js/superfish.js"></script>
+	<script src="js/supersubs.js"></script>
+	<script src="js/hoverIntent.js"></script>
+
+	<!-- treeview -->
+	<script src="js/jquery.treeview.js"></script>
+	
+	<!-- dataTable -->
+	<script src="js/jquery.dataTables.min.js"></script>
+
+
+	<script src="js/base.js">
+
+	</script>
+
+	<!-- jqplot go here -->
+    <link class="include" rel="stylesheet" type="text/css" href="jqplot/jquery.jqplot.min.css" />
+	<script class="include" type="text/javascript" src="jqplot/jquery.jqplot.min.js"></script>
+	<script class="include" type="text/javascript" src="jqplot/jqplot.barRenderer.min.js"></script>
+	<script class="include" type="text/javascript" src="jqplot/jqplot.categoryAxisRenderer.min.js"></script>
+	<script class="include" type="text/javascript" src="jqplot/jqplot.pointLabels.min.js"></script>
+	<script type="application/javascript">
+
+	</script>
+	
+	<!-- End jqplot -->
+
+</head>
+<body>
+
+
+	<div class="container_16">
+		<header>
+			<div class="grid_12">
+				<h1 id="branding">
+					<a href="#">Pre-check-in Verification System</a>
+				</h1>
+			</div>
+			<div class="grid_4">
+				<div class="sf-user">
+					<table >
+						<tr>
+							<td>
+								<p>John Doe (<a href="#">3 review requests</a>)</p>
+								<!-- <a class="logout_user" href="#" title="Logout">Logout</a> -->								
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			<div class="clear">
+			</div>
+			<div class="grid_16">
+				<ul class="sf-menu" id="navigationTop">
+					<li>
+						<a href="index.html">Dashboard</a>
+						<ul>
+							<li><a href="#">Nothing to see here</a></li>
+						</ul>
+					</li>
+					<li class="selected_no_child">
+						<a href="#">Current review request</a>
+					</li>
+					
+				</ul>
+
+			</div>
+	
+		</header>
+		<div class="grid_16">
+
+			<form id="form_ignore" action="submitaction/ignore" method="post">
+				<fieldset>
+					<div class="grid_12">
+						<h2 id="page-heading">
+							Commit ID: $commit_id
+						</h2>
+					</div>
+					<div class="grid_4">
+						<br><br>
+						<a href="http://10.197.84.110:8011" id="ignore" class="ui-state-default ui-corner-some floatRightMargin"><span class="ui-icon ui-icon-disk"></span>Ignore</a>
+						<a href="http://10.197.32.141:8080/submitaction/revoke" id="revoke" class="ui-state-default ui-corner-some floatRightMargin"><span class="ui-icon ui-icon-disk"></span>Revoke</a>
+						<div id="dialog_ignore" title="Warning">
+							<p>
+								Ignoring failures may damage the build. Be cautious!
+							</p>
+						</div>
+					</div>
+					<div class="clear"></div>
+					<br>
+					<div class="grid 16">
+						<div class="grid_4">					
+							<fieldset>
+								<legend><strong>Overview</strong></legend>
+								<table>
+								<tr>
+									<td><strong>Project: </strong></td>
+									<td><span> emma </span></td>
+								</tr>
+								<tr>
+									<td><strong>Component: </strong></td>
+									<td><span> Web </span></td>
+								</tr>
+								<tr>
+									<td><strong>Version: </strong></td>
+									<td><span> 3.0.0 </span></td>
+								</tr>
+								<tr>
+									<td><strong>Files commited: </strong></td>
+									<td><span> 4 </span></td>
+								</tr>
+								<tr>
+									<td><strong>Test executed: </strong></td>
+									<td><span> 50 </span></td>
+								</tr>							
+								<tr>
+									<td><strong>Failures: </strong></td>
+									<td><span style="color: red"> 13 </span></td>
+								</tr>							
+								</table>
+							</fieldset>				
+						</div>
+					
+						<div class="grid_12">
+							<div class="module_content">
+									<fieldset > <!-- to make two field float next to one another, adjust values accordingly -->
+										<label>Category</label>
+										<select style="width:92%;" name="category">
+											<option>Please choose an option</option>
+											<option>Expected failures</option>
+											<option>Dependent commit</option>
+											<option>An iusse</option>
+										</select>
+									</fieldset>
+									<fieldset>
+										<label>Comment</label>
+										<textarea rows="6" resize="vertical" name="comment"></textarea>
+												</fieldset>
+							</div>
+						</div><!-- end of post new article -->
+					</div>
+
+									  </fieldset>
+									  </form>
+									  </div>
+
+
+
+			
+			<br/>
+			<div class="grid_16">
+				<div class="box">
+					<h2>
+						<a href="#" id="toggle-articles">Test result</a>
+					</h2>
+					<div class="block" id="articles">
+						<div class="article">
+							  <div class="sixteen_column section">
+							    <div class="sixteen column">
+							      <div class="column_content">
+									<h3>
+										<a href="#">svn_hook_trail</a>
+									</h3>
+									<p class="meta">
+										<a href="#">Overview</a><span>  |  </span> 
+										<a href="#">Workspace</a><span>  |  </span> 
+										<a href="#">Console</a><span>  |  </span> 
+										<a href="#">Test result</a>
+									</p>
+							  	  </div>
+							  	</div>
+							  </div>
+							  <div >
+							    <div class="grid_4">
+							    	<div class="block">
+							    		<div class="box">
+							    			<div class="block">
+							    				<strong>Summary</strong>
+											    <div id="chart2" style="margin-top:20px; margin-left:20px;"></div>
+
+							    			</div>
+							    		</div>
+							    	</div>
+							    </div>
+							    <div class="grid_12">
+							    	<div class="box">
+								  <div class="block">
+
+										<strong>Details</strong><br/>
+										<table cellpadding="0" cellspacing="0" border="0" width="800px" class="display" id="example">
+										<thead>
+											<tr>
+												<th>Test suite</th>
+												<th>Test case</th>
+												<th>Action</th>
+												<th>Result</th>
+												<th>Execution time</th>
+											</tr>
+										</thead>
+										<tfoot>
+											<tr>
+												<th>Test suite</th>
+												<th>Test case</th>
+												<th>Action</th>
+												<th>Result</th>
+												<th>Execution time</th>
+											</tr>
+										</tfoot>
+										<tbody>
+											<tr class="gradeC">
+												<td>T01_Page_Syntax_Check</td>
+												<td>s01_commonProfile_multiple_wisdon</td>
+												<td>InitConfig</td>
+												<td>Pass</td>
+												<td>0.012</td>
+											</tr>
+											<tr class="gradeC">
+												<td>T01_Page_Syntax_Check</td>
+												<td>s01_commonProfile_multiple_wisdon</td>
+												<td>GetPageProfileGW</td>
+												<td>Pass</td>
+												<td>0.01</td>
+											</tr>
+											<tr class="gradeC">
+												<td>T01_Page_Syntax_Check</td>
+												<td>s01_commonProfile_multiple_wisdon</td>
+												<td>CompareString</td>
+												<td style="color:red">Failed</td>
+												<td>0.512</td>
+											</tr>
+											<tr class="gradeC">
+												<td>T01_Page_Syntax_Check</td>
+												<td>s02_specificProfile_single_usher</td>
+												<td>InitConfig</td>
+												<td>Pass</td>
+												<td>0.012</td>
+											</tr>
+											<tr class="gradeC">
+												<td>T01_Page_Syntax_Check</td>
+												<td>s02_specificProfile_single_usher</td>
+												<td>GetPageProfileGW</td>
+												<td>Pass</td>
+												<td>0.012</td>
+											</tr>
+											<tr class="gradeC">
+												<td>T01_Page_Syntax_Check</td>
+												<td>s02_specificProfile_single_usher</td>
+												<td>CompareString</td>
+												<td style="color:red">Failed</td>
+												<td>0.012</td>
+											</tr>
+											<tr class="gradeC">
+												<td>T02_Group_Syntax_Check</td>
+												<td>s01_commonGroup_multiple_wisdon</td>
+												<td>InitConfig</td>
+												<td>Pass</td>
+												<td>0.032</td>
+											</tr>
+											<tr class="gradeC">
+												<td>T02_Group_Syntax_Check</td>
+												<td>s01_commonGroup_multiple_wisdon</td>
+												<td>GetGroupGW</td>
+												<td>Pass</td>
+												<td>0.32</td>
+											</tr>
+											<tr class="gradeC">
+												<td>T02_Group_Syntax_Check</td>
+												<td>s01_commonGroup_multiple_wisdon</td>
+												<td>CompareString</td>
+												<td style="color:red">Failed</td>
+												<td>1.003</td>
+											</tr>
+											<tr class="gradeC">
+												<td>T02_Group_Syntax_Check</td>
+												<td>s02_specificGroup_single_usher</td>
+												<td>InitialConfig</td>
+												<td>Pass</td>
+												<td>0.012</td>
+											</tr>
+											<tr class="gradeC">
+												<td>T02_Group_Syntax_Check</td>
+												<td>s02_specificGroup_single_usher</td>
+												<td>GetPageProfileGW</td>
+												<td>Pass</td>
+												<td>0.012</td>
+											</tr>
+											<tr class="gradeC">
+												<td>T02_Group_Syntax_Check</td>
+												<td>s02_specificGroup_single_usher</td>
+												<td>CompareString</td>
+												<td style="color:red">Failed</td>
+												<td>0.35</td>
+											</tr>
+										</tbody>
+									</table>
+							      </div>
+							      </div>
+								</div>
+							  </div>
+							<div class="clear"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<!-- <a class="logout_user" href="#" title="Logout">Logout</a> -->						
+			<br/>	
+			<div class="grid_16">
+				<div class="box">
+					<h2>
+						<a href="#" id="toggle-codediff">Code diff</a>
+					</h2>
+					<div class="block" id="codediff">
+						<div class="code">
+					<div id="tabs">
+						<ul>
+							<li><a href="#tabs-1">ci.py</a></li>
+							<li><a href="#tabs-2">svn.py</a></li>
+							<li><a href="#tabs-3">main.py</a></li>
+						</ul>
+						<div id="tabs-1">
+							Index: ci.py<br>
+							===================================================================<br>
+							--- ci.py	(revision 359)<br>
+							+++ ci.py	(working copy)<br>
+							@@ -5,8 +5,12 @@<br>
+							 '''<br>
+							 import web<br>
+							 from log import log<br>
+							-from adaptor import HTTPAdaptor<br>
+							+from adaptor import HTTPAdaptor, SQLAdaptor<br>
+							+from exception import *<br>
+							+import opts<br>
+							+import utils<br>
+							 <br>
+							+<br>
+							 class SubmitStatus:<br>
+							     '''<br>
+							     API for submitting CI build status <br>
+							@@ -27,17 +31,15 @@<br>
+							             <br>
+							             # update status <br>
+							             dbopts = SQLAdaptor()<br>
+							-            dbopts.SetBuildStatus(build_info)   <br>         
+							+#            commit_id = dbopts.SetBuildStatus(build_info)  <br>          
+							             <br>
+							             # if all results are failures, send email to commitor<br>
+							             #<br>
+							-            failure_list = dbopts.CheckBuildFailures(build_info)<br>
+							+            failure_list, commit_id = dbopts.CheckBuildFailures(build_info)<br>
+							+            <br>
+							             if failure_list:<br>
+							-                author = build_info["build"]["parameters"]["author"]<br>
+							-                email = "%s@microstrategy.com" % author<br>
+							-                content = ""<br>
+							-                utils.send_email(email, content)<br>
+							-                log.info("Email is sent to %s" % email)           <br>
+							+                if not opts.SendEmailToCommitor(build_info, commit_id):<br>
+							+                    dbopts.SetCommitStatus(commit_id, 9)<br>
+							                         <br>
+							             return HTTPAdaptor.format_response("ok", "003", "Update status based on CI")<br>
+							         <br>
+							@@ -45,7 +47,31 @@<br>
+							             return HTTPAdaptor.format_response("err", code = e.status, msg = e.message)<br>
+							         <br>
+							         except Exception, e:<br>
+							-            return HTTPAdaptor.format_response("err", msg = "Server execution failed")  <br>      
+							+            return HTTPAdaptor.format_response("err", msg = "Server execution failed")   <br>
+							+<br>
+							+class ViewRequest:<br>
+							+    '''<br>
+							+    API for submitting actions <br>
+							+    '''<br>
+							+    <br>
+							+    def GET(self):<br>
+							+        '''<br>
+							+        Method:post<br>
+							+        '''<br>
+							+        try:<br>
+							+            log.info("CI:Get")<br>
+							+            query = HTTPAdaptor.format_query(web.ctx.env["QUERY_STRING"])<br>
+							+            if not (query.has_key("action") and query.has_key("buildurl")):<br>
+							+                raise "Invalid query string"<br>
+							+            <br>
+							+            url = query["buildurl"]+"api/json"<br>
+							+            buildinfo = HTTPAdaptor.get_url(url)<br>
+							+            print buildinfo<br>
+							+            <br>
+							+        except Exception, e:<br>
+							+            log.error(e)<br>
+							+            return HTTPAdaptor.format_response("error", "Request processing failed.")<br>
+							+             <br>
+							 class SubmitAction:<br>
+							     '''<br>
+							     API for submitting actions <br>
+
+						</div>
+						<div id="tabs-2">Phasellus mattis tincidunt nibh. Cras orci urna, blandit id, pretium vel, aliquet ornare, felis. Maecenas scelerisque sem non nisl. Fusce sed lorem in enim dictum bibendum.</div>
+						<div id="tabs-3">Nam dui erat, auctor a, dignissim quis, sollicitudin eu, felis. Pellentesque nisi urna, interdum eget, sagittis et, consequat vestibulum, lacus. Mauris porttitor ullamcorper augue.</div>
+					</div>
+					</div>
+					</div>
+				</div>
+			</div>
+				
+				
+		
+				
+
+		<footer>
+			<div class="grid_16" id="site_info">
+				<div class="box">
+					<p>Pre-check-in Verification System - <a href="http://www.html5admin.com">Powered by SMA QE team, 2012</a></p>
+				</div>
+			</div>
+			<div class="clear"></div>
+		</footer>
+	</div>
+</body>
+</html>

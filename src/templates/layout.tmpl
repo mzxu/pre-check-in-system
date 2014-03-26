@@ -1,0 +1,82 @@
+<!-- 
+ * html5 admin
+ *
+ * is double licensed under the MIT and Creative Commons Attribution 3.0 Unported License.
+ * - https://github.com/jquery/jquery/blob/master/MIT-LICENSE.txt
+ * 
+ * - http://creativecommons.org/licenses/by/3.0/
+-->
+
+<!doctype html>
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">	
+	<title>Pre-check-in verification system - subsystem of continous integration testing system</title>
+	<meta name="description" content="">
+	<meta name="author" content="">	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="shortcut icon" href="/static/css/images/favicon.ico">
+	{% block header %}
+	{% endblock %}
+
+</head>
+<body>
+
+
+	<div class="container_16" >
+		<header>
+			<div class="grid_12">
+				<h1 id="branding">
+					<a href="#">Pre-check-in Verification System</a>
+				</h1>
+			</div>
+			<div class="grid_4">
+				<div class="sf-user">
+					<table >
+						<tr>
+							<td>
+								<p>{{ author.name }}  (<a href="{{ author.request_url }}"> {{ author.request_num }} review requests</a>)</p>
+								<!-- <a class="logout_user" href="#" title="Logout">Logout</a> -->								
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			<div class="clear">
+			</div>
+			<div class="grid_16">
+				<ul class="sf-menu" id="navigationTop">
+				{% for nav in navi %}
+					{% if nav.theme == "unselected" %}
+					<li>
+						<a href="{{ nav.url }}">{{ nav.name }}</a>
+					</li>	
+					{% else %}
+					<li class="{{ nav.theme }}">
+						<a href="{{ nav.url }}">{{ nav.name }}</a>
+					</li>	
+					{% endif %}
+				{% endfor %}				
+				</ul>
+			</div>
+		</header>
+		{% block main %}
+		dfasdf
+		{% endblock %}
+		<footer>
+			<div class="grid_16" id="site_info">
+				<div class="box">
+					<p>Pre-check-in Verification System <a href="http:10.197.84.110:8011//">Powered by SMA QE team, 2012</a></p>
+				</div>
+			</div>
+			<div class="clear"></div>
+		</footer>
+	</div>	</div>
+</body>
+</html>
